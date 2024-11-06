@@ -422,6 +422,7 @@ Armv8.4-A [[ARMARMv84]](#ARMARMv84). Support is added for the Dot Product intrin
 * Removed Function Multi Versioning features ebf16, memtag3, and rpres.
 * Fixed range of operand `o0` (too small) in AArch64 system register designations.
 * Fixed SVE2.1 quadword gather load/scatter store intrinsics.
+* Changed name mangling of function types to include SME attributes.
 
 ### References
 
@@ -10116,52 +10117,35 @@ where:
 
 * streaming_mode is an integer representing the streaming-mode of the function:
 
-  +------------------------+--------------------------+
-  | Interface Type         | Value                    |
-  +========================+==========================+
-  | Normal (default)       | 0                        |
-  +------------------------+--------------------------+
-  | Streaming Mode         | 1                        |
-  +------------------------+--------------------------+
-  | Streaming-Compatible   | 2                        |
-  +------------------------+--------------------------+
+| **Interface Type**         | **Value**       |
+| -------------------------- | --------------- |
+| Normal (default)           | 0               |
+| Streaming Mode             | 1               |
+| Streaming-Compatible       | 2               |
 
 * za_state is an integer representing the ZA state of the function:
 
-  +------------------------+--------------------------+
-  | Interface Type         | Value                    |
-  +========================+==========================+
-  | No ZA State (default)  | 0                        |
-  +------------------------+--------------------------+
-  | ZA-In                  | 1                        |
-  +------------------------+--------------------------+
-  | ZA-InOut               | 2                        |
-  +------------------------+--------------------------+
-  | ZA-Out                 | 3                        |
-  +------------------------+--------------------------+
-  | ZA-Preserved           | 4                        |
-  +------------------------+--------------------------+
+| **Interface Type**         | **Value**       |
+| -------------------------- | --------------- |
+| No ZA State (default)      | 0               |
+| ZA-In                      | 1               |
+| ZA-InOut                   | 2               |
+| ZA-Out                     | 3               |
+| ZA-Preserved               | 4               |
 
 * zt0_state is an integer representing the ZT0 state of the function:
 
-  +------------------------+--------------------------+
-  | Interface Type         | Value                    |
-  +========================+==========================+
-  | No ZT0 State (default) | 0                        |
-  +------------------------+--------------------------+
-  | ZT0-In                 | 1                        |
-  +------------------------+--------------------------+
-  | ZT0-InOut              | 2                        |
-  +------------------------+--------------------------+
-  | ZT0-Out                | 3                        |
-  +------------------------+--------------------------+
-  | ZT0-Preserved          | 4                        |
-  +------------------------+--------------------------+
+| **Interface Type**         | **Value**       |
+| -------------------------- | --------------- |
+| No ZT0 State (default)     | 0               |
+| ZT0-In                     | 1               |
+| ZT0-InOut                  | 2               |
+| ZT0-Out                    | 3               |
+| ZT0-Preserved              | 4               |
 
 For example:
 
 ``` c
-
   // Mangled as _Z1fP11__SME_ATTRSIFu10__SVInt8_tvELj1ELj0ELj0EE
   void f(svint8_t (*fn)() __arm_streaming) { fn(); }
 
